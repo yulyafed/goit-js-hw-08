@@ -18,22 +18,25 @@ function onFormClick(e) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
-function populateForm(e) {
-    formData = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    if (formData) {
-        if (formData.email !== undefined) {
-            input.value = formData.email;
-        }
-        if (formData.message !== undefined) {
-            textarea.value = formData.message;
+function populateForm() {
+    const storageItem = localStorage.getItem(STORAGE_KEY);
+    if (storageItem) {
+        formData = JSON.parse(storageItem);
+        if (formData) {
+            if (formData.email !== undefined) {
+                input.value = formData.email;
+            }
+            if (formData.message !== undefined) {
+                textarea.value = formData.message;
+            }
         }
     }
 }
+
 function onFormSubmit(e) {
     e.preventDefault();
     e.currentTarget.reset();
     localStorage.removeItem(STORAGE_KEY);
     formData = {};
-    console.log(formData);
 }
 
